@@ -78,8 +78,8 @@ You can download the data from the cloud drive:
 
 | name                | link |
 | ------------------- | ---- |
-| celeba_face.zip   |  https://pan.baidu.com/s/1AJKpa0ac-6ZPWBASiMv87Q code: nujr |
-| celeba_raw_pic.zip | https://pan.baidu.com/s/1wBAZMFkNQS6R6KLkRl6ktw code: zgl0  |
+| celeba_face.zip   |  https://pan.baidu.com/s/15nsbvla8eCy_n3EsUMH36Q code：5ipn |
+| celeba_raw_pic.zip | https://pan.baidu.com/s/1WM3Zo3zLfKsAFvrDl03suQ code：3q70 |
 
 ## 2. how to train
 First, install the third-party package:
