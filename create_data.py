@@ -17,7 +17,7 @@ mtcnn = MTCNN(
 
 from glob import glob
 from PIL import Image
-all_files = glob(r'.\celeba\img_align_celeba\*.jpg')
+all_files = glob(r'.\celeba1\celeba_raw_pic\*.jpg')
 #print(all_files)
 # # InceptionResnetV1提供了两个预训练模型，分别在vggface数据集和casia数据集上训练的。
 # # 预训练模型如果不手动下载，可能速度会很慢，可以从作者给的谷歌云链接下载，然后放到C:\Users\你的用户名\.cache\torch\checkpoints这个文件夹下面

@@ -1,26 +1,22 @@
-
 from torch.autograd import Variable
 import torch
 import data_loader
-import torch.nn.functional as F
 from torchvision import transforms
-import model
+
 import numpy as np
 
 from tqdm import tqdm
 from pprint import pprint
-import model2
+import model
 
 from torch import optim
-from torchvision.utils import make_grid
-import time
 import torch.nn as nn
 tfms = transforms.Compose([transforms.Resize((224, 224)),
                            transforms.ToTensor()])
 
-train_dl = data_loader.MultiClassCelebA(data_loader.train_df, r'.\celeba\face', transform = tfms)
+train_dl = data_loader.MultiClassCelebA(data_loader.train_df, r'.\celeba1\celeba_face', transform = tfms)
 
-valid_dl = data_loader.MultiClassCelebA(data_loader.val_df, r'.\celeba\face', transform = tfms)
+valid_dl = data_loader.MultiClassCelebA(data_loader.val_df, r'.\celeba1\celeba_face', transform = tfms)
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 print(device)
@@ -34,10 +30,13 @@ def check_cuda():
 
 
 is_cuda = check_cuda()
-#model_path = r'best_models/model-resnet-151-2.ptn'
-model = model2.ResNet50(class_num=2)
+model = model.ResNet50(class_num=2)
 model = model.to(device)
-#model = torch.load(model_path)
+load_pretrain_model = False
+model_dir=r".\pretrain_models\model-resnet-50-justface-state.ptn"
+if load_pretrain_model:
+    checkpoint = torch.load(model_dir)
+    model.load_state_dict(checkpoint)
 
 if is_cuda:
     model.cuda()
@@ -120,4 +119,4 @@ for i in tqdm(range(1, 20)):
     val_losses.append(val_l); val_acc.append(val_a)
 
 
-torch.save(model.state_dict(), "best_models/model-resnet-50-justface-state.ptn")
+torch.save(model.state_dict(), "pretrain_models/model-resnet-50-justface-state.ptn")

@@ -4,12 +4,12 @@ from torchvision import transforms
 import torch.nn.functional as F
 from PIL import Image
 import numpy as np
-import model2
+import model
 labels = ['Male','Mouth_Slightly_Open']
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-model = model2.ResNet50(class_num=2)
+model = model.ResNet50(class_num=2)
 model.to(device)
-model_path = r'best_models/model-resnet-50-justface-state.ptn'
+model_path = r'pretrain_models\model-resnet-50-justface-state.ptn'
 checkpoint = torch.load(model_path)
 model.load_state_dict(checkpoint)
 model = model.eval()
@@ -53,5 +53,4 @@ def predict(img, label_lst, model):
 
     return label, list(arg_s.items())[:]
 
-print(predict(r'.\test_img\144.jpg', labels, model))
-#print(predict(r'.\celeba\img_align_celeba\199950.jpg', labels, model))
+print(predict(r'.\test_img\test1.jpg', labels, model))
